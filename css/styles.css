@@ -284,8 +284,17 @@ main > div > p {
         margin-bottom: 35px;
     }
 
+    .user-quizzes{
+        padding: 0 5%;
+    }
+
+    .all-quizzes-title{
+        margin-left: 5%;
+    }
+
     .quizz {
-        width: 100%;
+        width: 90%;
+        margin: 0 auto;
     }
 
     .quizzing img {
