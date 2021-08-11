@@ -7,5 +7,19 @@ function getQuizzes () {
 }
 
 function renderQuizzes(response) {
-    console.log(response.data);
+    let quizzes = '';
+    console.log(response.data)
+    for (let i = 0; i < response.data.length; i++) {
+        quizzes +=`<div class="quizz" id="quizz-${i + 1}">
+                        <img>
+                        <p class="title">${response.data[i].title}</p>
+                    </div>`
+    }
+
+    document.querySelector('.all-quizzes').innerHTML = quizzes;
+
+    for (let i = 0; i < response.data.length; i++) {
+        document.querySelector(`#quizz-${1}`).style.background = 
+        `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${response.data.image});`
+    }
 }

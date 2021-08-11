@@ -32,6 +32,12 @@ main > section {
     margin-bottom: 77px;
 }
 
+main p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 .my-quizzes {
     width: 100%;
     height: 181px;
@@ -58,6 +64,7 @@ main > section {
     border: 1px dashed #EC362D;
     color: #EC362D;
     cursor: pointer;
+    font-size: 21px;
 }
 
 .all-quizzes {
@@ -84,7 +91,7 @@ main > section {
     border-radius: 5px;
 }
 
-.quizz p {
+.quizz .title {
     position: absolute;
     bottom: 7px;
     left: 18px;
