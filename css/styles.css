@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-
 }
 
 body {
@@ -38,6 +37,10 @@ main > div > p {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 12px;
+}
+
+.home{
+    display: block;
 }
 
 .user-quizzes {

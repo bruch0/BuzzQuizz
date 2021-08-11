@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/createQuizz.css">
 
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -22,6 +23,8 @@
         <p></p>
     </div>
     <main>
+
+        <!--  HOME PAGE  -->
         <div class="home">
             <div class="user-quizzes">
                 <p>Seus Quizzes</p>
@@ -29,7 +32,7 @@
             </div>
             <section class="my-quizzes">
                 <div class="quizz">
-                    <button><img></button>
+                    <button></button>
                     <p class="title">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
                     <div class="options-holder">
                         <button><img class="icon" src="assets/edit_logo.png" alt="Editar quizz"></button>
@@ -43,6 +46,7 @@
             </section>
         </div>
 
+        <!--  QUIZZING PAGE  -->
         <section class="quizzing">
             <div class="question">
                 <div class="title">        
@@ -68,6 +72,27 @@
                 </div>
             </div>
         </section>
+
+        <!--  CREATE QUIZZ PAGE 1 -->
+        <section class="create-1">
+            <span class="title-create-1">Comece pelo começo</span>
+            <ul class="initial-form">
+                <li>
+                    <input type="text" id="quizzTitle" placeholder="Título do seu quizz">
+                </li>
+                <li>
+                    <input type="text" id="quizzImg" placeholder="URL da imagem do seu quizz">
+                </li>
+                <li>
+                    <input type="text" id="numberQuestions" placeholder="Quantidade de perguntas do quizz">
+                </li>
+                <li>
+                    <input type="text" id="numberLevels" placeholder="Quantidade de níveis do quizz">
+                </li>
+            </ul>
+            <button class="nextButton-1">Prosseguir pra criar perguntas</button>
+        </section>    
+
     </main>
 
     <section class="loading">

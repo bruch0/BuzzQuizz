@@ -11,7 +11,7 @@ function renderQuizzes(response) {
     let quizzes = '';
     for (let i = 0; i < response.data.length; i++) {
         quizzes +=`<div class="quizz" id="quizz-${i + 1}">
-                        <button onclick="callQuizz(${i + 1})"><img></button>
+                        <button onclick="callQuizz(${i + 1})"></button>
                         <p class="title">${response.data[i].title}</p>
                     </div>`
     }
