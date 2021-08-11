@@ -9,10 +9,9 @@ function getQuizzes () {
 
 function renderQuizzes(response) {
     let quizzes = '';
-    console.log(response.data)
     for (let i = 0; i < response.data.length; i++) {
         quizzes +=`<div class="quizz" id="quizz-${i + 1}">
-                        <button><img></button>
+                        <button onclick="callQuizz(${i + 1})"><img></button>
                         <p class="title">${response.data[i].title}</p>
                     </div>`
     }
