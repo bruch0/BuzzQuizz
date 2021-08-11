@@ -29,7 +29,6 @@ function renderQuizzing(response) {
     }
 
 
-
     hideLoading();
     document.querySelector('.quizzing').style.display = 'block';
 }
