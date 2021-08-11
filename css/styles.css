@@ -32,10 +32,10 @@ main > section {
     margin-bottom: 77px;
 }
 
-main p {
+main > p {
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .my-quizzes {
@@ -47,6 +47,7 @@ main p {
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    border-radius: 5px;
 }
 
 .my-quizzes p {
@@ -98,4 +99,19 @@ main p {
     color: #FFFFFF;
     font-size: 19px;
     line-height: 22px;
+}
+
+@media (max-width: 1100px) {
+    main {
+        width: 95%;
+        margin: 100px auto;
+    }
+    
+    main > section {
+        margin-bottom: 35px;
+    }
+
+    .quizz {
+        width: 100%;
+    }
 }
