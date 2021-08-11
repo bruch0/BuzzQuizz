@@ -12,18 +12,18 @@ function loadHome() {
         <p>Seus Quizzes</p>
         <ion-icon name="add-circle"></ion-icon>
     </div>
-    <section class="my-quizzes no-quizz">
+    <section class="my-quizzes">
         <div class="quizz">
-            <img>
+            <button><img></button>
             <p class="title">Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
             <div class="options-holder">
-                <img class="icon" src="assets/edit_logo.png" alt="Editar quizz">
-                <img class="icon" src="assets/delete_logo.png" alt="Deletar quizz">
+                <button><img class="icon" src="assets/edit_logo.png" alt="Editar quizz"></button>
+                <button><img class="icon" src="assets/delete_logo.png" alt="Deletar quizz"></button>
             </div>
         </div>
     </section>`;
     
     // tb tem que chamar uma funcao pra renderizar os quizzes do usuario
     document.querySelector('main').innerHTML = 
-    `${myQuizzes} + <section class="all-quizzes"></section>`
+    `${myQuizzes} <section class="all-quizzes"></section>`
 }
