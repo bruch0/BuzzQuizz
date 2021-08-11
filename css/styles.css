@@ -146,8 +146,6 @@ main > p {
     height: 181px;
     position: relative;
     margin-bottom: 5px;
-    padding: 0;
-    margin: 0;
 }
 
 .quizz > button {
@@ -156,6 +154,9 @@ main > p {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url('https://img.quizur.com/f/img60229135637eb5.97078183.jpg?lastEdited=1612878137');
     background-size: cover;
     border-radius: 5px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
 }
 
 .quizz .title {
