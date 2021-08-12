@@ -49,7 +49,6 @@ function isValidPage1(){
 function loadCreatePage1(){
     document.querySelector(".home").style.display = "none";
     document.querySelector(".create-1").style.display = "flex";
-    document.querySelector("body").style.backgroundColor = "#e5e5e5"
 }
 
 function finishPage1(){
