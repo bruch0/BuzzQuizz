@@ -1,0 +1,40 @@
+@media (max-width: 1100px) {
+    main {
+        width: 95%;
+        margin: 100px auto;
+    }
+    
+    main > section {
+        margin-bottom: 35px;
+    }
+
+    .user-quizzes{
+        padding: 0 5%;
+    }
+
+    .all-quizzes-title{
+        margin-left: 5%;
+    }
+
+    .quizz {
+        height: 300px;
+        width: 90%;
+        margin: 0px auto 25px auto;
+    }
+
+    .quizz > button {
+        height: 300px;
+    }
+
+    .quizzing img {
+        height: 181px;
+    }
+
+    .quizzing p {
+        font-size: 19px;
+    }
+
+    .question, .score {
+        width: 100%;
+    }
+}

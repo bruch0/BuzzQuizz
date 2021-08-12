@@ -32,7 +32,7 @@
     font-size: 39px;
 }
 
-.question {
+.question, .score {
     width: 80%;
     background-color: #FFFFFF;
     margin: 25px auto 25px auto;
@@ -45,7 +45,7 @@
     margin: 0px auto 0px auto;
 }
 
-.question .title {
+.question .title, .score .title {
     width: 100%;
     height: 138px;
     background-color: #434CA0;
@@ -85,4 +85,37 @@
     font-weight: bold;
     font-size: 20px;
     line-height: 23px;
+}
+
+.selected {
+    opacity: 1 !important;
+}
+
+.right {
+    color: #009C22;
+    opacity: 0.3;
+}
+
+.wrong {
+    color: #FF4B4B;
+    opacity: 0.3;
+}
+
+.score {
+    display: none;
+}
+
+.description {
+    display: flex;
+    justify-content: space-between;
+}
+
+.description img, .description p {
+    width: 49%;
+    height: 200px;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 25px;
+    word-wrap: break-word;
 }

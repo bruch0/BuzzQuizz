@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -47,12 +51,6 @@ main {
 
 main > section {
     margin-bottom: 77px;
-}
-
-main > div > p {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 12px;
 }
 
 .home{
@@ -164,6 +162,12 @@ main > div > p {
     justify-content: space-between;
 }
 
+.all-quizzes-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
 .quizz {
     width: 33%;
     height: 181px;
@@ -207,38 +211,3 @@ main > div > p {
     align-items: center;
 }
 
-@media (max-width: 1100px) {
-    main {
-        width: 95%;
-        margin: 100px auto;
-    }
-    
-    main > section {
-        margin-bottom: 35px;
-    }
-
-    .user-quizzes{
-        padding: 0 5%;
-    }
-
-    .all-quizzes-title{
-        margin-left: 5%;
-    }
-
-    .quizz {
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    .quizzing img {
-        height: 181px;
-    }
-
-    .quizzing p {
-        font-size: 19px;
-    }
-
-    .question {
-        width: 100%;
-    }
-}

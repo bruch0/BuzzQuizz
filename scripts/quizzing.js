@@ -1,4 +1,7 @@
 let actual = '.home';
+let object;
+let points = 0;
+let pointsPerQuestion = 0;
 
 function callQuizz(id) {
     callLoading();
@@ -20,10 +23,10 @@ function renderQuizzing(response) {
         let nButtons = response.data.questions[i].answers.length;
         let buttons = '';
         for (let j = 0; j < nButtons; j++) {
-            buttons += `<div>
-                            <button class="unset" id="img-1"></button>
+            buttons += `<div onclick="selectAnswer(this)">
+                            <button class="unset" id="${i} ${j}"></button>
                             <p class="unset"></p>
-                        </div>`
+                        </div>`;
         }
         
 
@@ -38,13 +41,20 @@ function renderQuizzing(response) {
             </div>
         </div>`
     }
-
+    document.querySelector('section.quizzing').innerHTML += `<div class="score">
+                                                                <div class="container">
+                                                                    <p class="title"></p>
+                                                                    <div class="description">
+                                                                        <img>
+                                                                        <p></>
+                                                                    </div>
+                                                                </div>
+                                                            </div>`
     renderQuestions(response);
-    
+    pointsPerQuestion = parseInt(100 / response.data.questions.length);
 }
 
 function renderQuestions (response) {
-    console.log(response.data);
     for (let i = 0; i < response.data.questions.length; i++) {
         document.querySelector('.question .title.unset').innerHTML = response.data.questions[i].title;
         document.querySelector('.question .title.unset').classList.remove('unset');
@@ -59,4 +69,76 @@ function renderQuestions (response) {
     
     hideLoading();
     document.querySelector('.quizzing').style.display = 'flex';
+    object = response.data;
+}
+
+function selectAnswer(element) {
+    element.classList.add('selected');
+    correctChoice(object, element);
+    isQuizzComplete();
+}
+
+function correctChoice(object, element) {
+    let questionNumber = element.firstElementChild.id[0];
+
+    for (let i = 0; i < element.parentNode.children.length; i++) {
+        if (object.questions[questionNumber].answers[i].isCorrectAnswer) {
+            document.getElementById(`${questionNumber} ${i}`).parentNode.classList.add('right');
+        }
+        else {
+            document.getElementById(`${questionNumber} ${i}`).parentNode.classList.add('wrong');
+        }
+    }
+    disableQuestion(element);
+    evaluateAnswer(element);
+    scrollToNextQuestion(questionNumber);
+}
+
+function disableQuestion(element) {
+    let disable = element.parentNode.querySelectorAll('button');
+
+    for (let i = 0; i < disable.length; i++) {
+        disable[i].disabled = true;
+    }
+}
+
+function evaluateAnswer(element) {
+    if (element.classList.contains('right')) {
+        points += pointsPerQuestion;
+    }
+}
+
+function scrollToNextQuestion(questionAnswered) {
+    let scroll = document.querySelector('.quizzing').children;
+    setTimeout(function() {
+        scroll[parseInt(questionAnswered) + 2].scrollIntoView();
+    }, 2000)
+}
+
+function isQuizzComplete() {
+    let answeredQuestions = document.querySelectorAll('.selected').length;
+    if (answeredQuestions === object.questions.length) {
+        showScore();
+    }
+}
+
+function showScore() {
+    if (points > 100) {
+        points = 100;
+    }
+    let level;
+
+    for (let i = object.levels.length; i > 0; i--) {
+        if (points >= object.levels[i - 1].minValue) {
+            level = i - 1;
+            break;
+        }
+    }
+
+    document.querySelector('.score .title').innerHTML = 
+    `${points}% de acerto: ${object.levels[level].title}`;
+    document.querySelector('.score img').src = object.levels[level].image;
+    document.querySelector('.description p').innerHTML = object.levels[0].text;
+
+    document.querySelector('.score').style.display = 'block'
 }
