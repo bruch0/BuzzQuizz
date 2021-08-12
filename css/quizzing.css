@@ -40,10 +40,14 @@
     padding: 25px 0 25px 0;
 }
 
-.question .title {
+.container {
     width: 90%;
+    margin: 0px auto 0px auto;
+}
+
+.question .title {
+    width: 100%;
     height: 138px;
-    margin-top: 25px;
     background-color: #434CA0;
     display: flex;
     justify-content: center;
@@ -51,41 +55,12 @@
     font-weight: bold;
     font-size: 23px;
     line-height: 27px;
+    text-align: center;
     color: #FFFFFF;
-    margin: 0px auto 0px auto;
-}
-/* 
-.options-container {
-    width: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 auto 0 auto;
 }
 
-.options-container .option {
+.question button {
+    background-image: url(https://img.quizur.com/f/img60229135637eb5.97078183.jpg?lastEdited=1612878137);
     width: 49%;
     height: 250px;
-    margin: 10px 0 10px 0;
 }
-
-.options-container .option button {
-    width: 100%;
-    height: 90%;
-    margin: 0;
-    padding: 0;
-    border: 0px;
-    cursor: pointer;
-}
-
-.options-container .option button img {
-    width: 100%;
-    height: 100%;
-}
-
-.options-container .option p {
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 23px;
-} */
