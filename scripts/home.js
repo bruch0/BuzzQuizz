@@ -13,7 +13,7 @@ function loadHome() {
         let myQuizzes = 
         `<div class="user-quizzes">
             <p>Seus Quizzes</p>
-            <ion-icon name="add-circle"></ion-icon>
+            <button onclick="loadCreatePage1()"><ion-icon name="add-circle"></ion-icon></button>
         </div>
         <section class="my-quizzes">
             <div class="quizz">

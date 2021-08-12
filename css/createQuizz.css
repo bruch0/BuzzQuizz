@@ -59,21 +59,24 @@ input::placeholder {
     width: 100%;
     min-height: 74px;
     background-color: #FFFF;
-    padding: 27px 19px 27px 17px ;
+    padding: 0px 19px 0px 17px ;
     margin-bottom: 24px;
     cursor: pointer;
     border-radius: 3px;
 }
 
 .newQuestion span{
+    width: calc(100% - 30px);
     font-size: 20px;
     font-weight: 700;
+    padding: 27px 0px 27px 0px;
 }
 
 .newQuestion ion-icon{
     width: 26px;
     height: 23px;
     display: block;
+    padding: 27px 0px 27px 0px;
 }
 
 .newQuestion-content{

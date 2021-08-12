@@ -1,0 +1,91 @@
+.quizzing {
+    display: none;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quizzing > div {
+    position: relative;
+}
+
+.quizzing-header {
+    width: 100vw;
+    display: none;
+    position: absolute;
+}
+
+.quizzing-header img{
+    width: 100vw;
+    height: 300px;
+    background-size: cover !important;
+}
+
+.quizzing-header p {
+    width: 100vw;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 39px;
+}
+
+.question {
+    width: 80%;
+    background-color: red; 
+    /* #ffffff */
+    margin: 25px auto 25px auto;
+    justify-content: center;
+    padding: 25px 0 25px 0;
+}
+
+.question .title {
+    width: 90%;
+    height: 138px;
+    margin-top: 25px;
+    background-color: #434CA0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 23px;
+    line-height: 27px;
+    color: #FFFFFF;
+    margin: 0px auto 0px auto;
+}
+/* 
+.options-container {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto 0 auto;
+}
+
+.options-container .option {
+    width: 49%;
+    height: 250px;
+    margin: 10px 0 10px 0;
+}
+
+.options-container .option button {
+    width: 100%;
+    height: 90%;
+    margin: 0;
+    padding: 0;
+    border: 0px;
+    cursor: pointer;
+}
+
+.options-container .option button img {
+    width: 100%;
+    height: 100%;
+}
+
+.options-container .option p {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+} */

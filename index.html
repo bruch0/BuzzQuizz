@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/quizzing.css">
     <link rel="stylesheet" href="css/createQuizz.css">
 
     <meta name="description" content="">
@@ -18,14 +19,9 @@
     <header>
         BuzzQuizz
     </header>
-    <div class="quizzing-header">
-        <img>
-        <p></p>
-    </div>
     <main>
-
         <!--  HOME PAGE  -->
-        <div class="home">
+        <section class="home">
             <div class="user-quizzes">
                 <p>Seus Quizzes</p>
                 <button onclick="loadCreatePage1()"><ion-icon name="add-circle"></ion-icon></button>
@@ -44,31 +40,21 @@
             <section class="all-quizzes">
 
             </section>
-        </div>
+        </section>
 
         <!--  QUIZZING PAGE  -->
         <section class="quizzing">
-            <div class="question">
-                <div class="title">        
+            <div class="quizzing-header">
+                <img id="quizzing-header">
+                <p></p>
             </div>
 
+            <div class="question">
+                <p class="title"></p>
+                
                 <div class="options-container">
-                    <div class="option">
-                        <button ><img class="unset" id="img-1"></button>
-                        <p class="unset"></p>
-                    </div>
-                    <div class="option">
-                        <button ><img class="unset" id="img-2"></button>
-                        <p class="unset"></p>
-                    </div>
-                    <div class="option">
-                        <button ><img class="unset" id="img-3"></button>
-                        <p class="unset"></p>
-                    </div>
-                    <div class="option">
-                        <button ><img class="unset" id="img-4"></button>
-                        <p class="unset"></p>
-                    </div>
+                    
+                    
                 </div>
             </div>
         </section>
@@ -104,6 +90,7 @@
 
     </main>
 
+    <!-- LOADING SECTION -->
     <section class="loading">
         <img src="assets/loading.gif" alt="Tela de loading">
     </section>
@@ -117,3 +104,26 @@
     <script src="./scripts/createQuizz.js"></script>
 </body>
 </html>
+
+<!-- 
+<div class="title">        
+</div>
+
+    <div class="options-container">
+        <div class="option">
+            <button ><img class="unset" id="img-1"></button>
+            <p class="unset"></p>
+        </div>
+        <div class="option">
+            <button ><img class="unset" id="img-2"></button>
+            <p class="unset"></p>
+        </div>
+        <div class="option">
+            <button ><img class="unset" id="img-3"></button>
+            <p class="unset"></p>
+        </div>
+        <div class="option">
+            <button ><img class="unset" id="img-4"></button>
+            <p class="unset"></p>
+        </div>
+    </div> -->

@@ -71,9 +71,9 @@ function loadCreatePage2(){
     ul.innerHTML = "";
     for (let i=0; i<nQuestions; i++){
         ul.innerHTML += `
-        <li class="newQuestion close" onclick="animateNewQuestion(this)">
-            <span>Pergunta ${i+1}</span>
-            <ion-icon name="create-outline"></ion-icon>
+        <li class="newQuestion close">
+            <span onclick="animateNewQuestion(this)">Pergunta ${i+1}</span>
+            <ion-icon name="create-outline" onclick="animateNewQuestion(this)"></ion-icon>
             <div class="newQuestion-content">
                 <input type="text" name="newQuestionText" placeholder="Texto da pergunta">
                 <input type="text" name="newQuestionColor" placeholder="Cor de fundo da pergunta">
@@ -98,18 +98,19 @@ function finishPage2(){
 }
 
 function animateNewQuestion(elem){
-    if (elem.classList.contains("close")){
+    console.log(elem.parentNode.classList)
+    if (elem.parentNode.classList.contains("close")){
         //if is closed
-        elem.classList.remove("close");
-        elem.style.flexDirection = "column";
-        elem.querySelector("ion-icon").style.display = "none";
-        elem.querySelector(".newQuestion-content").style.display = "flex";
+        elem.parentNode.classList.remove("close");
+        elem.parentNode.style.flexDirection = "column";
+        elem.parentNode.querySelector("ion-icon").style.display = "none";
+        elem.parentNode.querySelector(".newQuestion-content").style.display = "flex";
     }else{
         //if is open
-        elem.classList.add("close");
-        elem.style.flexDirection = "initial";
-        elem.querySelector("ion-icon").style.display = "block";
-        elem.querySelector(".newQuestion-content").style.display = "none";
+        elem.parentNode.classList.add("close");
+        elem.parentNode.style.flexDirection = "initial";
+        elem.parentNode.querySelector("ion-icon").style.display = "block";
+        elem.parentNode.querySelector(".newQuestion-content").style.display = "none";
     }
 
 }

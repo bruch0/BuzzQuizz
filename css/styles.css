@@ -158,7 +158,6 @@ main > div > p {
 .quizz > button {
     width: 100%;
     height: 181px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url('https://img.quizur.com/f/img60229135637eb5.97078183.jpg?lastEdited=1612878137');
     background-size: cover;
     border-radius: 5px;
     padding: 0;
@@ -188,93 +187,6 @@ main > div > p {
     display: none;
     justify-content: center;
     align-items: center;
-}
-
-.quizzing {
-    display: none;
-}
-
-.quizzing > div {
-    position: relative;
-}
-
-.quizzing-header {
-    display: none;
-    position: relative;
-}
-
-.quizzing-header img{
-    width: 100vw;
-    height: 300px;
-    background-size: cover !important;
-}
-
-.quizzing-header p {
-    width: 100vw;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    text-align: center;
-    color: #FFFFFF;
-    font-size: 39px;
-}
-
-.question {
-    width: 80%;
-    background-color: #FFFFFF;
-    margin: 0 auto;
-    justify-content: center;
-    padding-top: 25px;
-}
-
-.question .title {
-    width: 90%;
-    height: 138px;
-    margin-top: 25px;
-    background-color: #434CA0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 23px;
-    line-height: 27px;
-    color: #FFFFFF;
-    margin: 0px auto 0px auto;
-}
-
-.options-container {
-    width: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 auto 0 auto;
-}
-
-.options-container .option {
-    width: 49%;
-    height: 250px;
-    margin: 10px 0 10px 0;
-}
-
-.options-container .option button {
-    width: 100%;
-    height: 90%;
-    margin: 0;
-    padding: 0;
-    border: 0px;
-    cursor: pointer;
-}
-
-.options-container .option button img {
-    width: 100%;
-    height: 100%;
-}
-
-.options-container .option p {
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 23px;
 }
 
 @media (max-width: 1100px) {
