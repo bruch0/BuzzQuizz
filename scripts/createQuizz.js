@@ -65,9 +65,22 @@ function finishPage1(){
 }
 
 function loadCreatePage2(){
-    console.log(quizzTitle);
-    console.log(quizzImg);
-    console.log(nQuestions);
-    console.log(nLevels);
+    document.querySelector(".create-1").style.display = "none";
+    document.querySelector(".create-2").style.display = "flex";
+}
+
+function animateNewQuestion(elem){
+    if ( elem.querySelector(".newQuestion-content").style.display === "none"){
+        //if is closed
+        elem.style.flexDirection = "column";
+        elem.querySelector("ion-icon").style.display = "none";
+        elem.querySelector(".newQuestion-content").style.display = "flex";
+    }else{
+        //if is open
+        elem.style.flexDirection = "initial";
+        elem.querySelector("ion-icon").style.display = "block";
+        elem.querySelector(".newQuestion-content").style.display = "none";
+    }
+
 }
 

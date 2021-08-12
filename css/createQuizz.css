@@ -1,11 +1,11 @@
-
+.create-2,
 .create-1{
     display: none;
     flex-direction: column;
     align-items: center;
 }
 
-.title-create-1{
+.title-create{
     font-weight: 700;
     font-size: 23px;
 }
@@ -29,13 +29,13 @@
     padding: 13px 0 11px 23px;
 }
 
-.initial-form li input::placeholder {
+input::placeholder {
     font-style: italic;
     font-size: 19px;
     margin-left: 16px;
   }
 
-.nextButton-1{
+.nextButton{
     width: 368.86px;
     height: 54px;
     background-color: #EC362D;
@@ -43,8 +43,58 @@
     color: #FFFF;
     font-size: 21px;
     border: 1px #EC362D solid;
+    cursor: pointer;
 }
 
+.newQuestions{
+    background-color: inherit;
+    width: 600px;
+    margin: 36px 0 81px 0;
+}
+
+.newQuestion{
+    display: flex;
+    flex-direction: initial;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 74px;
+    background-color: #FFFF;
+    padding: 27px 19px 27px 17px ;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.newQuestion span{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.newQuestion ion-icon{
+    width: 26px;
+    height: 23px;
+    display: block;
+}
+
+.newQuestion-content{
+    display: none;
+    flex-direction: column;
+}
+
+.newQuestion-content input{
+    height: 46px;
+    border-radius: 5px;
+    border: 1px #D1D1D1 solid;
+    margin-top: 14px;
+    padding: 13px 0 11px 23px;
+}
+
+.newQuestion-content span{
+    margin: 28px 0 24px 0;
+}
+
+.input-separation{
+    margin-bottom: 32px;
+}
 @media (max-width: 1100px) {
     .initial-form{
         margin: 29px 0 29px 0;
