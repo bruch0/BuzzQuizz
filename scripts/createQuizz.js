@@ -2,16 +2,7 @@ let newQuizz, quizzQuestions = [];
 let quizzTitle, quizzImg = "";
 let nQuestions, nLevels = 0;
 
-function isValidUrl(string) { //this function is from stackoverflow
-    let url;
-    try {
-      url = new URL(string);
-    } catch (_) {
-      return false;  
-    }
-    return url.protocol === "http:" || url.protocol === "https:";
- }
-
+//VALIDATION FUNCTIONS
 function isValidPage1(){
     //validade inputs page1
     if (quizzImg==="" || quizzTitle==="" || nQuestions==="" || nLevels===""){
@@ -45,7 +36,62 @@ function isValidPage1(){
     }
 }
 
+function isValidPage2(){
+    for(let i=0; i<nQuestions; i++){
+        console.log(quizzQuestions);
+        if(quizzQuestions[i].title === "" || quizzQuestions[i].color === ""){
+            alert("Preencha todos os campos");
+            return false;
+        }else{
+            if(quizzQuestions[i].title.length < 20){
+                alert("O título deve conter ao menos 20 caracteres");
+                return false;
+            }
+            if(!isHexColor(quizzQuestions[i].color)){
+                alert("A cor deve ser hexadecimal válida");
+                return false;
+            }
 
+            for(let j=0; j<quizzQuestions[i].answers.length; j++){
+                console.log("entrei no for");
+                if(quizzQuestions[i].answers[j].text === "" || quizzQuestions[i].answers[j].image === ""){
+                    alert("Preencha os campos corretamente");
+                    return false;
+                }else{
+                    if(!isValidUrl(quizzQuestions[i].answers[j].image)){
+                        alert("As imagens devem conter link de URL válido");
+                        return false;
+                    }
+                    if(quizzQuestions[i].answers.length < 2){
+                        alert("Uma pergunta deve conter dentre 2 e 4 respostas");
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
+
+function isValidUrl(string) { 
+    let url;
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;  
+    }
+    return url.protocol === "http:" || url.protocol === "https:";
+ }
+
+function isHexColor(color){
+    if(/^#[0-9A-F]{6}$/i.test(color)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+//PAGE FUNCTIONS
 function loadCreatePage1(){
     document.querySelector(".home").style.display = "none";
     document.querySelector(".create-1").style.display = "flex";
@@ -114,6 +160,7 @@ function finishPage2(){
         let wrongAnswer3 = questions[i].querySelector(".wrongAnswer3").value;
         let wrongAnswerImg3 = questions[i].querySelector(".wrongAnswerImg3").value;
         
+        //get the correct answer
         ans = {
                 text: correctAnswer,
 				image: correctAnswerImg,
@@ -121,6 +168,7 @@ function finishPage2(){
             };
         localAnswers.push(ans);
 
+        //get the wrong answers if they exist 
         if (wrongAnswer1 !== "" && wrongAnswerImg1 !== ""){
             ans = {
                 text: wrongAnswerImg1,
@@ -147,16 +195,26 @@ function finishPage2(){
             };
             localAnswers.push(ans);
         }
-
+        //save the information
         localQuestion.answers = localAnswers;
         quizzQuestions.push(localQuestion);
+        //reset variables
         localQuestion = {};
         localAnswers = [];
         ans ={};
     }
   
-    console.log(quizzQuestions);
+   if(isValidPage2()){
+       alert("tudo certo!");
+   }else{
+       //if the page is not valid, then
+       //reset questions
+       quizzQuestions=[];
+       return;
+   }
 }
+
+
 
 function animateNewQuestion(elem){
     if (elem.parentNode.classList.contains("close")){
