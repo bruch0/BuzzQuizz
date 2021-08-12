@@ -10,19 +10,20 @@
 }
 
 .quizzing-header {
-    width: 100vw;
+    width: calc(100vw - 10px);
     display: none;
     position: absolute;
 }
 
 .quizzing-header img{
-    width: 100vw;
+    width: 100%;
     height: 300px;
     background-size: cover !important;
+    background-repeat: no-repeat !important;
 }
 
 .quizzing-header p {
-    width: 100vw;
+    width: 100%;
     position: absolute;
     top: 50%;
     left: 0;
@@ -33,8 +34,7 @@
 
 .question {
     width: 80%;
-    background-color: red; 
-    /* #ffffff */
+    background-color: #FFFFFF;
     margin: 25px auto 25px auto;
     justify-content: center;
     padding: 25px 0 25px 0;
@@ -59,8 +59,30 @@
     color: #FFFFFF;
 }
 
-.question button {
-    background-image: url(https://img.quizur.com/f/img60229135637eb5.97078183.jpg?lastEdited=1612878137);
+.options {
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.options > div {
     width: 49%;
+    margin-top: 15px;
+}
+
+.question button {
+    width: 100%;
     height: 250px;
+    border: 0px;
+    cursor: pointer;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+.question p {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
 }

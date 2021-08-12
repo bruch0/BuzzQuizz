@@ -8,7 +8,6 @@ function getQuizzes () {
 }
 
 function renderQuizzes(response) {
-    console.log(response.data);
     let quizzes = '';
     for (let i = 0; i < response.data.length; i++) {
         quizzes +=`<div class="quizz">
@@ -23,8 +22,7 @@ function renderQuizzes(response) {
     for (let i = 0; i < response.data.length; i++) {
         document.querySelector(`#quizz-${i + 1}`).style.background = 
         `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${response.data[response.data.length - 1 - i].image})`;
-        console.log(response.data[i].image);
-        console.log(`linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${response.data[i].image})`)
+        
     }
     hideLoading();
 }

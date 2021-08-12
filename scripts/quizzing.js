@@ -16,19 +16,51 @@ function renderQuizzing(response) {
     `linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${response.data.image})`;
     document.querySelector('.quizzing-header p').innerHTML = response.data.title;
 
-    document.querySelector('.question .title').innerHTML = response.data.questions[0].title;
-    console.log(response.data.questions[0]);
+    for (let i = 0; i < response.data.questions.length; i++) {
+        document.querySelector('section.quizzing').innerHTML += 
+        `<div class="question">
+            <div class="container">
+                <p class="title unset"></p>
+            
+                <div class="options">
+                    <div>
+                        <button class="unset" id="img-1"></button>
+                        <p class="unset"></p>
+                    </div>
+                    <div>
+                        <button class="unset" id="img-2"></button>
+                        <p class="unset"></p>
+                    </div>
+                    <div>
+                        <button class="unset" id="img-3"></button>
+                        <p class="unset"></p>
+                    </div>
+                    <div>
+                        <button class="unset" id="img-4"></button>
+                        <p class="unset"></p>
+                    </div>
+                </div>
+            </div>
+        </div>`
+    }
 
-    // for (let i = 0; i < 4; i++) {
-    //     document.querySelector('.question p.unset').innerHTML = response.data.questions[0].answers[i].text;
-    //     document.getElementById(`img-${i + 1}`).src = `${response.data.questions[0].answers[i].image}`;
-    //     console.log(response.data.questions[0].answers[i].image)
+    renderQuestions(response);
+    
+}
 
-    //     document.querySelector('.question p.unset').classList.remove('unset');
-    //     document.querySelector('.question img.unset').classList.remove('unset');
-    // }
-
-
+function renderQuestions (response) {
+    for (let i = 0; i < response.data.questions.length; i++) {
+        document.querySelector('.question .title.unset').innerHTML = response.data.questions[i].title;
+        document.querySelector('.question .title.unset').classList.remove('unset');
+        for (let j = 0; j < 4 ; j++) {
+            document.querySelector('.question .options p.unset').innerHTML = response.data.questions[i].answers[j].text;
+            document.querySelector('.question .options p.unset').classList.remove('unset');
+    
+            document.querySelector('.question button.unset').style.background = `url(${response.data.questions[i].answers[j].image})`;
+            document.querySelector('.question button.unset').classList.remove('unset');
+        }
+    }
+    
     hideLoading();
     document.querySelector('.quizzing').style.display = 'flex';
 }
