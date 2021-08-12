@@ -67,16 +67,46 @@ function finishPage1(){
 function loadCreatePage2(){
     document.querySelector(".create-1").style.display = "none";
     document.querySelector(".create-2").style.display = "flex";
+    let ul = document.querySelector(".newQuestions");
+    ul.innerHTML = "";
+    for (let i=0; i<nQuestions; i++){
+        ul.innerHTML += `
+        <li class="newQuestion close" onclick="animateNewQuestion(this)">
+            <span>Pergunta ${i+1}</span>
+            <ion-icon name="create-outline"></ion-icon>
+            <div class="newQuestion-content">
+                <input type="text" name="newQuestionText" placeholder="Texto da pergunta">
+                <input type="text" name="newQuestionColor" placeholder="Cor de fundo da pergunta">
+                <span>Resposta correta</span>
+                <input type="text" name="correctAnswer" placeholder="Resposta correta">
+                <input type="text" name="correctImg" placeholder="URL da imagem">
+                <span>Respostas incorretas</span>
+                <input type="text" name="wrongAnswer1" placeholder="Resposta incorreta 1">
+                <input type="text" name="wrongImg1" class="input-separation" placeholder="URL da imagem 1">
+                <input type="text" name="wronAnswer2" placeholder="Resposta incorreta 2">
+                <input type="text" name="wrongImg2" class="input-separation" placeholder="URL da imagem 2">
+                <input type="text" name="wronAnswer3" placeholder="Resposta incorreta 3">
+                <input type="text" name="wrongImg3"  placeholder="URL da imagem 3">
+            </div>
+        </li>
+        `
+    }
+}
+
+function finishPage2(){
+
 }
 
 function animateNewQuestion(elem){
-    if ( elem.querySelector(".newQuestion-content").style.display === "none"){
+    if (elem.classList.contains("close")){
         //if is closed
+        elem.classList.remove("close");
         elem.style.flexDirection = "column";
         elem.querySelector("ion-icon").style.display = "none";
         elem.querySelector(".newQuestion-content").style.display = "flex";
     }else{
         //if is open
+        elem.classList.add("close");
         elem.style.flexDirection = "initial";
         elem.querySelector("ion-icon").style.display = "block";
         elem.querySelector(".newQuestion-content").style.display = "none";

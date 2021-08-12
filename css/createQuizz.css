@@ -104,4 +104,9 @@ input::placeholder {
     .nextButton-1{
         width: 324px;
     }
+
+    .newQuestions{
+        margin: 29px 0 29px 0;
+        width: 100vw;
+    }
 }
