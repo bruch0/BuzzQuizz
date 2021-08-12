@@ -75,18 +75,18 @@ function loadCreatePage2(){
             <span onclick="animateNewQuestion(this)">Pergunta ${i+1}</span>
             <ion-icon name="create-outline" onclick="animateNewQuestion(this)"></ion-icon>
             <div class="newQuestion-content">
-                <input type="text" name="newQuestionText" placeholder="Texto da pergunta">
-                <input type="text" name="newQuestionColor" placeholder="Cor de fundo da pergunta">
+                <input type="text" class="newQuestionText" placeholder="Texto da pergunta">
+                <input type="text" class="newQuestionColor" placeholder="Cor de fundo da pergunta">
                 <span>Resposta correta</span>
-                <input type="text" name="correctAnswer" placeholder="Resposta correta">
-                <input type="text" name="correctImg" placeholder="URL da imagem">
+                <input type="text" class="correctAnswer" placeholder="Resposta correta">
+                <input type="text" class="correctAnswerImg" placeholder="URL da imagem">
                 <span>Respostas incorretas</span>
-                <input type="text" name="wrongAnswer1" placeholder="Resposta incorreta 1">
-                <input type="text" name="wrongImg1" class="input-separation" placeholder="URL da imagem 1">
-                <input type="text" name="wronAnswer2" placeholder="Resposta incorreta 2">
-                <input type="text" name="wrongImg2" class="input-separation" placeholder="URL da imagem 2">
-                <input type="text" name="wronAnswer3" placeholder="Resposta incorreta 3">
-                <input type="text" name="wrongImg3"  placeholder="URL da imagem 3">
+                <input type="text" class="wrongAnswer1" placeholder="Resposta incorreta 1">
+                <input type="text" class="wrongAnswerImg1 input-separation" placeholder="URL da imagem 1">
+                <input type="text" class="wrongAnswer2" placeholder="Resposta incorreta 2">
+                <input type="text" class="wrongAnswerImg2 input-separation" placeholder="URL da imagem 2">
+                <input type="text" class="wrongAnswer3" placeholder="Resposta incorreta 3">
+                <input type="text" class="wrongAnswerImg3"  placeholder="URL da imagem 3">
             </div>
         </li>
         `
@@ -94,11 +94,71 @@ function loadCreatePage2(){
 }
 
 function finishPage2(){
+    let questions = document.querySelectorAll(".newQuestion");
+    let localQuestion = {};
+    let localAnswers = [];
+    let ans ={};
 
+    for (let i=0; i<nQuestions; i++){
+        localQuestion = {
+            title: questions[i].querySelector(".newQuestionText").value,
+			color: questions[i].querySelector(".newQuestionColor").value,
+        }
+
+        let correctAnswer = questions[i].querySelector(".correctAnswer").value;
+        let correctAnswerImg = questions[i].querySelector(".correctAnswerImg").value;
+        let wrongAnswer1 = questions[i].querySelector(".wrongAnswer1").value;
+        let wrongAnswerImg1 = questions[i].querySelector(".wrongAnswerImg1").value;
+        let wrongAnswer2 = questions[i].querySelector(".wrongAnswer2").value;
+        let wrongAnswerImg2 = questions[i].querySelector(".wrongAnswerImg2").value;
+        let wrongAnswer3 = questions[i].querySelector(".wrongAnswer3").value;
+        let wrongAnswerImg3 = questions[i].querySelector(".wrongAnswerImg3").value;
+        
+        ans = {
+                text: correctAnswer,
+				image: correctAnswerImg,
+				isCorrectAnswer: true
+            };
+        localAnswers.push(ans);
+
+        if (wrongAnswer1 !== "" && wrongAnswerImg1 !== ""){
+            ans = {
+                text: wrongAnswerImg1,
+				image: wrongAnswerImg1,
+				isCorrectAnswer: false
+            };
+            localAnswers.push(ans);
+        }
+
+        if (wrongAnswer2 !== "" && wrongAnswerImg2 !== ""){
+            ans = {
+                text: wrongAnswerImg2,
+				image: wrongAnswerImg2,
+				isCorrectAnswer: false
+            };
+            localAnswers.push(ans);
+        }
+
+        if (wrongAnswer3 !== "" && wrongAnswerImg3 !== ""){
+            ans = {
+                text: wrongAnswerImg3,
+				image: wrongAnswerImg3,
+				isCorrectAnswer: false
+            };
+            localAnswers.push(ans);
+        }
+
+        localQuestion.answers = localAnswers;
+        quizzQuestions.push(localQuestion);
+        localQuestion = {};
+        localAnswers = [];
+        ans ={};
+    }
+  
+    console.log(quizzQuestions);
 }
 
 function animateNewQuestion(elem){
-    console.log(elem.parentNode.classList)
     if (elem.parentNode.classList.contains("close")){
         //if is closed
         elem.parentNode.classList.remove("close");
