@@ -6,6 +6,9 @@
     align-items: center;
 }
 
+.create-3{
+    display: flex;
+}
 .title-create{
     font-weight: 700;
     font-size: 23px;

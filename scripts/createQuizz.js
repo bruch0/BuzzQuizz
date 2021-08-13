@@ -1,7 +1,9 @@
-let newQuizz, quizzQuestions = [];
+let newQuizz, quizzQuestions, quizzLevels = [];
 let quizzTitle, quizzImg = "";
 let nQuestions, nLevels = 0;
 
+nLevels=3;
+loadCreatePage3();
 
 
 //VALIDATION FUNCTIONS
@@ -233,6 +235,68 @@ function loadCreatePage3(){
             </div>
         </li>
         `
+    }
+}
+
+function isValidPage3(){
+    let minZero = false;
+    console.log(quizzLevels);
+    for(let i=0; i<nLevels; i++){
+        quizzLevels[i].minValue = Number(quizzLevels[i].minValue);
+        if (quizzLevels[i].minValue === 0){
+            minZero = true;
+        }
+        if( quizzLevels[i].title==="" || quizzLevels[i].image==="" || quizzLevels[i].text==="" || quizzLevels[i].minValue===""){
+            alert("Preencha todos os campos");
+            return false;
+        }
+        if( isNaN(quizzLevels[i].minValue)){
+            alert("A porcentagem de acerto mínimo deve ser um número");
+            return false;
+        }
+        if( quizzLevels[i].title.length < 10){
+            alert("O título deve conter pelo menos 10 caracteres");
+            return false;
+        }
+        if( !isValidUrl(quizzLevels[i].image) ){
+            alert("O link de imagem deve ser uma URL válida");
+            return false;
+        }
+        if ( quizzLevels[i].text.length < 30 ){
+            alert("A descrição deve conter no mínimo 30 caracteres");
+            return false;
+        }
+        if ( quizzLevels[i].minValue<0 || quizzLevels[i].minValue > 100){
+            alert("A porcentagem de acerto mínimo deve ser um número entre 0 e 100");
+            return false;
+        }
+    }
+    if(!minZero){
+        alert("Ao menos um nível deve ter como porcentagem mínima 0%");
+        return false;
+    }
+    return true;
+}
+
+function finishPage3(){
+    let levels = document.querySelectorAll(".newLevel");
+    let localLevel = {};
+
+    for (let i=0; i<nLevels; i++){
+        localLevel = {
+            title: levels[i].querySelector(".newLevelTitle").value,
+            image: levels[i].querySelector(".newLevelImg").value,
+            text: levels[i].querySelector(".newLevelDescription").value,
+            minValue: levels[i].querySelector(".newLevelPercent").value
+        };
+        quizzLevels.push(localLevel);
+    }
+
+    if(isValidPage3()){
+        alert("tudo certo");
+    }else{
+        quizzLevels = [];
+        return;
     }
 }
 

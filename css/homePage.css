@@ -54,7 +54,7 @@ main > section {
 }
 
 .home{
-    display: block;
+    display: none;
 }
 
 .user-quizzes {
