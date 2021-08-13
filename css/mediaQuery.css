@@ -37,4 +37,16 @@
     .question, .score {
         width: 100%;
     }
+    
+    .confirm-section div {
+        width: 45%;
+        font-size: 3vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .confirm-section div {
+        width: 70%;
+        font-size: 5vw;
+    }
 }
