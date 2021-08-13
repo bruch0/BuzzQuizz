@@ -41,7 +41,7 @@ function loadHome(checkUserCreatedQuizzes, createdQuizzes) {
         myQuizzes = 
         `<section class="my-quizzes no-quizz">
             <p>Você não criou nenhum <br/>quizz ainda :(</p>
-            <button>Criar Quizz</button>
+            <button onclick="loadCreatePage1()">Criar Quizz</button>
         </section>`;
     }else{
         // se tiver,
