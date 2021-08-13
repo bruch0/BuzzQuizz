@@ -2,6 +2,8 @@ let newQuizz, quizzQuestions = [];
 let quizzTitle, quizzImg = "";
 let nQuestions, nLevels = 0;
 
+
+
 //VALIDATION FUNCTIONS
 function isValidPage1(){
     //validade inputs page1
@@ -53,7 +55,6 @@ function isValidPage2(){
             }
 
             for(let j=0; j<quizzQuestions[i].answers.length; j++){
-                console.log("entrei no for");
                 if(quizzQuestions[i].answers[j].text === "" || quizzQuestions[i].answers[j].image === ""){
                     alert("Preencha os campos corretamente");
                     return false;
@@ -118,8 +119,8 @@ function loadCreatePage2(){
     for (let i=0; i<nQuestions; i++){
         ul.innerHTML += `
         <li class="newQuestion close">
-            <span onclick="animateNewQuestion(this)">Pergunta ${i+1}</span>
-            <ion-icon name="create-outline" onclick="animateNewQuestion(this)"></ion-icon>
+            <span onclick="animateCard(this, '.newQuestion-content')">Pergunta ${i+1}</span>
+            <ion-icon name="create-outline" onclick="animateCard(this, '.newQuestion-content')"></ion-icon>
             <div class="newQuestion-content">
                 <input type="text" class="newQuestionText" placeholder="Texto da pergunta">
                 <input type="text" class="newQuestionColor" placeholder="Cor de fundo da pergunta">
@@ -171,7 +172,7 @@ function finishPage2(){
         //get the wrong answers if they exist 
         if (wrongAnswer1 !== "" && wrongAnswerImg1 !== ""){
             ans = {
-                text: wrongAnswerImg1,
+                text: wrongAnswer1,
 				image: wrongAnswerImg1,
 				isCorrectAnswer: false
             };
@@ -180,7 +181,7 @@ function finishPage2(){
 
         if (wrongAnswer2 !== "" && wrongAnswerImg2 !== ""){
             ans = {
-                text: wrongAnswerImg2,
+                text: wrongAnswer2,
 				image: wrongAnswerImg2,
 				isCorrectAnswer: false
             };
@@ -189,7 +190,7 @@ function finishPage2(){
 
         if (wrongAnswer3 !== "" && wrongAnswerImg3 !== ""){
             ans = {
-                text: wrongAnswerImg3,
+                text: wrongAnswer3,
 				image: wrongAnswerImg3,
 				isCorrectAnswer: false
             };
@@ -205,7 +206,7 @@ function finishPage2(){
     }
   
    if(isValidPage2()){
-       alert("tudo certo!");
+       loadCreatePage3();
    }else{
        //if the page is not valid, then
        //reset questions
@@ -214,21 +215,40 @@ function finishPage2(){
    }
 }
 
+function loadCreatePage3(){
+    document.querySelector(".create-2").style.display = "none";
+    document.querySelector(".create-3").style.display = "flex";
+    let ul = document.querySelector(".newLevels");
+    ul.innerHTML = "";
+    for (let i=0; i<nLevels; i++){
+        ul.innerHTML += `
+        <li class="newLevel close">
+            <span onclick="animateCard(this, '.newLevel-content')">Nível ${i+1}</span>
+            <ion-icon name="create-outline" onclick="animateCard(this, '.newLevel-content')"></ion-icon>
+            <div class="newLevel-content">
+                <input type="text" class="newLevelTitle" placeholder="Título do nível">
+                <input type="text" class="newLevelPercent" placeholder="% de acerto mínima">
+                <input type="text" class="newLevelImg" placeholder="URL da imagem do nível">
+                <input type="text" class="newLevelDescription" placeholder="Descrição do nível">
+            </div>
+        </li>
+        `
+    }
+}
 
-
-function animateNewQuestion(elem){
+function animateCard(elem, type){
     if (elem.parentNode.classList.contains("close")){
         //if is closed
         elem.parentNode.classList.remove("close");
         elem.parentNode.style.flexDirection = "column";
         elem.parentNode.querySelector("ion-icon").style.display = "none";
-        elem.parentNode.querySelector(".newQuestion-content").style.display = "flex";
+        elem.parentNode.querySelector(type).style.display = "flex";
     }else{
         //if is open
         elem.parentNode.classList.add("close");
         elem.parentNode.style.flexDirection = "initial";
         elem.parentNode.querySelector("ion-icon").style.display = "block";
-        elem.parentNode.querySelector(".newQuestion-content").style.display = "none";
+        elem.parentNode.querySelector(type).style.display = "none";
     }
 
 }

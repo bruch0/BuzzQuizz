@@ -1,3 +1,4 @@
+.create-3,
 .create-2,
 .create-1{
     display: none;
@@ -46,12 +47,14 @@ input::placeholder {
     cursor: pointer;
 }
 
+.newLevels,
 .newQuestions{
     background-color: inherit;
     width: 600px;
     margin: 36px 0 81px 0;
 }
 
+.newLevel,
 .newQuestion{
     display: flex;
     flex-direction: initial;
@@ -65,6 +68,7 @@ input::placeholder {
     border-radius: 3px;
 }
 
+.newLevel span,
 .newQuestion span{
     width: calc(100% - 30px);
     font-size: 20px;
@@ -72,6 +76,7 @@ input::placeholder {
     padding: 27px 0px 27px 0px;
 }
 
+.newLevel ion-icon,
 .newQuestion ion-icon{
     width: 26px;
     height: 23px;
@@ -79,11 +84,13 @@ input::placeholder {
     padding: 27px 0px 27px 0px;
 }
 
+.newLevel-content,
 .newQuestion-content{
     display: none;
     flex-direction: column;
 }
 
+.newLevel-content input,
 .newQuestion-content input{
     height: 46px;
     border-radius: 5px;
@@ -92,6 +99,7 @@ input::placeholder {
     padding: 13px 0 11px 23px;
 }
 
+.newLevel-content span,
 .newQuestion-content span{
     margin: 28px 0 24px 0;
 }
