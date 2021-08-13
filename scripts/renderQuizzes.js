@@ -11,7 +11,6 @@ function renderQuizzes(response) {
     startStorage(response);
     let quizzes = '';
     let checkerNumber = 0;
-    let skip = [];
     for (let i = 1; i < response.data.length + 1; i++) {
         let checker = i === ignoreOnLoadingAllQuizzes[checkerNumber];
         if (!checker) {
@@ -24,24 +23,14 @@ function renderQuizzes(response) {
         }
         else {
             checkerNumber ++;
-            skip.push(i) // usado pra saber quais indices pular ao renderizar a imagem de fundo
         }
     }
     document.querySelector('.all-quizzes').innerHTML = quizzes;
 
-    for (let i = 1; i < response.data.length - ignoreOnLoadingAllQuizzes.length + 1; i++) {
-        let skipCheck = i === skip[0];
-
-        if (!skipCheck){
-            console.log(i, 'vdd')
+    for (let i = 1; i < response.data.length + 1; i++) {
             // se não for pra skippar esse indice
-            document.querySelector(`#quizz-${i}`).style.background = 
-            `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${response.data[response.data.length - 1 - i].image})`;
-        }
-        else {
-            skip.shift();
-            console.log(i, 'falso')
-        }
+        document.querySelector(`#quizz-${i}`).style.background = 
+        `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${response.data[response.data.length - i].image})`;
     }
     hideLoading();
 }

@@ -11,7 +11,8 @@ function startStorage(response) {
 }
 
 function checkCreatedQuizzes(response) {
-    if (localStorage.getItem('ids').length !== 0) {
+    let check = JSON.parse(localStorage.getItem('ids'));
+    if (check.length !== 0) {
         let ids = JSON.parse(localStorage.getItem('ids'));
         let createdQuizzes = returnCreatedQuizzes(ids, response);
         ignoreOnLoadingAllQuizzes = ids;
@@ -49,7 +50,7 @@ function loadHome(checkUserCreatedQuizzes, createdQuizzes) {
         for (let i = 0; i < createdQuizzes.length; i++) {
             buttons += 
             `<div class="quizz">
-                <button id="quizz-${ignoreOnLoadingAllQuizzes[i]}" onclick="callQuizz(${ignoreOnLoadingAllQuizzes[i]})" style="background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, rgb(0, 0, 0) 100%), url(${createdQuizzes[i].image});"></button>
+                <button id="quizz-${ignoreOnLoadingAllQuizzes[i]}" onclick="callQuizz(${ignoreOnLoadingAllQuizzes[i]})"></button>
                 <p class="title">${createdQuizzes[i].title}</p>
                 <div class="options-holder">
                     <button><img class="icon" src="assets/edit_logo.png" alt="Editar quizz"></button>
