@@ -6,6 +6,9 @@
     align-items: center;
 }
 
+.create-3{
+    display: flex;
+}
 .title-create{
     font-weight: 700;
     font-size: 23px;
@@ -107,16 +110,18 @@ input::placeholder {
 .input-separation{
     margin-bottom: 32px;
 }
+
 @media (max-width: 1100px) {
     .initial-form{
         margin: 29px 0 29px 0;
         width: 100vw;
     }
 
-    .nextButton-1{
+    .nextButton{
         width: 324px;
     }
 
+    .newLevels,
     .newQuestions{
         margin: 29px 0 29px 0;
         width: 100vw;
