@@ -2,9 +2,6 @@ let newQuizz, quizzQuestions, quizzLevels = [];
 let quizzTitle, quizzImg = "";
 let nQuestions, nLevels = 0;
 
-nLevels=3;
-loadCreatePage3();
-
 
 //VALIDATION FUNCTIONS
 function isValidPage1(){
