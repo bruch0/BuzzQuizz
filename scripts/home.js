@@ -36,6 +36,15 @@ function returnCreatedQuizzes(ids, response) {
 
 function loadHome(checkUserCreatedQuizzes, createdQuizzes) {
     let myQuizzes;
+    let deleteSection = 
+    `<div class="confirm-section">
+        <div>
+            Deseja realmente <br/>deletar esse quizz?
+            <button class="button-1">Deletar</button>
+            <button class="button-2" onclick="closeDeleteQuizz()">Cancelar</button>
+        </div>
+    </div>`;
+
     if(!checkUserCreatedQuizzes){
         // se nao tiver quizzes, 
         myQuizzes = 
@@ -54,7 +63,7 @@ function loadHome(checkUserCreatedQuizzes, createdQuizzes) {
                 <p class="title">${createdQuizzes[i].title}</p>
                 <div class="options-holder">
                     <button><img class="icon" src="assets/edit_logo.png" alt="Editar quizz"></button>
-                    <button><img class="icon" src="assets/delete_logo.png" alt="Deletar quizz"></button>
+                    <button onclick="openDeleteQuizz()"><img class="icon" src="assets/delete_logo.png" alt="Deletar quizz"></button>
                 </div>
             </div>`
         }
@@ -70,5 +79,15 @@ function loadHome(checkUserCreatedQuizzes, createdQuizzes) {
     }
 
     document.querySelector('.home').innerHTML =
-    `${myQuizzes} <p class="all-quizzes-title">Todos os Quizzes</p> <section class="all-quizzes"></section> `
+    `${myQuizzes} <p class="all-quizzes-title">Todos os Quizzes</p> <section class="all-quizzes"></section> ${deleteSection}`
+}
+
+function openDeleteQuizz() {
+    document.querySelector('.confirm-section').style.display = 'flex';
+    document.querySelector('body').style.overflow = 'hidden';
+}
+
+function closeDeleteQuizz() {
+    document.querySelector('.confirm-section').style.display = 'none';
+    document.querySelector('body').style.overflow = 'initial';
 }

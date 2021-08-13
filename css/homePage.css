@@ -198,6 +198,58 @@ main > section {
     text-align: start;
 }
 
+.confirm-section {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-section div {
+    width: 20%;
+    height: 25%;
+    background-color: #FAFAFA;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.6vw;
+}
+
+.confirm-section .button-1 {
+    border: 0px;
+    border-radius: 50px;
+    background-color: #EC362D;
+    height: 20%;
+    width: 60%;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+.confirm-section .button-2 {
+    border: 0px;
+    border-radius: 50px;
+    background-color: transparent;
+    height: 20%;
+    width: 60%;
+    color: gray;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
 .loading {
     width: 100%;
     height: 100%;
