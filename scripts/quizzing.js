@@ -57,7 +57,7 @@ function renderQuizzing(response) {
     </div>`
 
     renderQuestions(response);
-    pointsPerQuestion = parseInt(100 / response.data.questions.length);
+    pointsPerQuestion = 100 / response.data.questions.length;
 }
 
 function renderQuestions (response) {
@@ -130,6 +130,8 @@ function isQuizzComplete() {
 }
 
 function showScore() {
+    points = parseInt(points);
+    
     if (points > 100) {
         points = 100;
     }
