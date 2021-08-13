@@ -1,4 +1,6 @@
-let newQuizz, quizzQuestions, quizzLevels = [];
+let quizzLevels = [];
+let quizzQuestions = [];
+let newQuizz = {};
 let quizzTitle, quizzImg = "";
 let nQuestions, nLevels = 0;
 
@@ -39,7 +41,6 @@ function isValidPage1(){
 
 function isValidPage2(){
     for(let i=0; i<nQuestions; i++){
-        console.log(quizzQuestions);
         if(quizzQuestions[i].title === "" || quizzQuestions[i].color === ""){
             alert("Preencha todos os campos");
             return false;
@@ -69,6 +70,45 @@ function isValidPage2(){
                 }
             }
         }
+    }
+    return true;
+}
+
+function isValidPage3(){
+    let minZero = false;
+    for(let i=0; i<nLevels; i++){
+        quizzLevels[i].minValue = Number(quizzLevels[i].minValue);
+        if (quizzLevels[i].minValue === 0){
+            minZero = true;
+        }
+        if( quizzLevels[i].title==="" || quizzLevels[i].image==="" || quizzLevels[i].text==="" || quizzLevels[i].minValue===""){
+            alert("Preencha todos os campos");
+            return false;
+        }
+        if( isNaN(quizzLevels[i].minValue)){
+            alert("A porcentagem de acerto mínimo deve ser um número");
+            return false;
+        }
+        if( quizzLevels[i].title.length < 10){
+            alert("O título deve conter pelo menos 10 caracteres");
+            return false;
+        }
+        if( !isValidUrl(quizzLevels[i].image) ){
+            alert("O link de imagem deve ser uma URL válida");
+            return false;
+        }
+        if ( quizzLevels[i].text.length < 30 ){
+            alert("A descrição deve conter no mínimo 30 caracteres");
+            return false;
+        }
+        if ( quizzLevels[i].minValue<0 || quizzLevels[i].minValue > 100){
+            alert("A porcentagem de acerto mínimo deve ser um número entre 0 e 100");
+            return false;
+        }
+    }
+    if(!minZero){
+        alert("Ao menos um nível deve ter como porcentagem mínima 0%");
+        return false;
     }
     return true;
 }
@@ -149,7 +189,7 @@ function finishPage2(){
         localQuestion = {
             title: questions[i].querySelector(".newQuestionText").value,
 			color: questions[i].querySelector(".newQuestionColor").value,
-        }
+        };
 
         let correctAnswer = questions[i].querySelector(".correctAnswer").value;
         let correctAnswerImg = questions[i].querySelector(".correctAnswerImg").value;
@@ -235,45 +275,7 @@ function loadCreatePage3(){
     }
 }
 
-function isValidPage3(){
-    let minZero = false;
-    console.log(quizzLevels);
-    for(let i=0; i<nLevels; i++){
-        quizzLevels[i].minValue = Number(quizzLevels[i].minValue);
-        if (quizzLevels[i].minValue === 0){
-            minZero = true;
-        }
-        if( quizzLevels[i].title==="" || quizzLevels[i].image==="" || quizzLevels[i].text==="" || quizzLevels[i].minValue===""){
-            alert("Preencha todos os campos");
-            return false;
-        }
-        if( isNaN(quizzLevels[i].minValue)){
-            alert("A porcentagem de acerto mínimo deve ser um número");
-            return false;
-        }
-        if( quizzLevels[i].title.length < 10){
-            alert("O título deve conter pelo menos 10 caracteres");
-            return false;
-        }
-        if( !isValidUrl(quizzLevels[i].image) ){
-            alert("O link de imagem deve ser uma URL válida");
-            return false;
-        }
-        if ( quizzLevels[i].text.length < 30 ){
-            alert("A descrição deve conter no mínimo 30 caracteres");
-            return false;
-        }
-        if ( quizzLevels[i].minValue<0 || quizzLevels[i].minValue > 100){
-            alert("A porcentagem de acerto mínimo deve ser um número entre 0 e 100");
-            return false;
-        }
-    }
-    if(!minZero){
-        alert("Ao menos um nível deve ter como porcentagem mínima 0%");
-        return false;
-    }
-    return true;
-}
+
 
 function finishPage3(){
     let levels = document.querySelectorAll(".newLevel");
@@ -291,10 +293,22 @@ function finishPage3(){
 
     if(isValidPage3()){
         alert("tudo certo");
+        createQuizzObj();
+        console.log(createQuizzObj());
     }else{
         quizzLevels = [];
         return;
     }
+}
+
+function createQuizzObj(){
+    newQuizz = {
+        title: quizzTitle,  
+        image: quizzImg,
+        questions: quizzQuestions,
+        levels: quizzLevels
+    }
+    return newQuizz;
 }
 
 function animateCard(elem, type){
