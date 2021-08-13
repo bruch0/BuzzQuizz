@@ -48,7 +48,6 @@
 .question .title, .score .title {
     width: 100%;
     height: 138px;
-    background-color: #434CA0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,6 +56,14 @@
     line-height: 27px;
     text-align: center;
     color: #FFFFFF;
+}
+
+.question:nth-child(n) .title {
+    background-color: #A0438D;
+}
+
+.question:nth-child(2n) .title {
+    background-color: #434CA0;
 }
 
 .options {
@@ -105,6 +112,10 @@
     display: none;
 }
 
+.score .title {
+    background-color: #EC362D;
+}
+
 .description {
     display: flex;
     justify-content: space-between;
@@ -118,4 +129,39 @@
     font-size: 19px;
     line-height: 25px;
     word-wrap: break-word;
+}
+
+.options-endgame {
+    width: 80%;
+    display: none;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.options-endgame button {
+    margin: 15px ;
+    cursor: pointer;
+}
+
+.play-again {
+    width: 50%;
+    height: 50px;
+    background-color: #EC362D;
+    border: 0px;
+    border-radius: 15px;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.options-endgame button.home {
+    width: 50%;
+    height: 50px;
+    background-color: transparent;
+    border: 0px;
+    color: #818181;
+    font-size: 18px;
 }

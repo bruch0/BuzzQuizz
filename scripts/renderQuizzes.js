@@ -14,7 +14,6 @@ function renderQuizzes(response) {
     for (let i = 1; i < response.data.length + 1; i++) {
         let checker = i === ignoreOnLoadingAllQuizzes[checkerNumber];
         if (!checker) {
-            // se o indice nao for igual ao id dos quizzes criados
             quizzes +=`<div class="quizz">
                         <button onclick="callQuizz(${i})" id="quizz-${i}"></button>
                         <p class="title">${response.data[response.data.length - i].title}</p>
@@ -28,7 +27,6 @@ function renderQuizzes(response) {
     document.querySelector('.all-quizzes').innerHTML = quizzes;
 
     for (let i = 1; i < response.data.length + 1; i++) {
-            // se não for pra skippar esse indice
         document.querySelector(`#quizz-${i}`).style.background = 
         `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${response.data[response.data.length - i].image})`;
     }

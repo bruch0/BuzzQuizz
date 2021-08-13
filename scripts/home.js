@@ -69,5 +69,6 @@ function loadHome(checkUserCreatedQuizzes, createdQuizzes) {
         </section>`;
     }
 
-    document.querySelector('.home').innerHTML = `${myQuizzes} <section class="all-quizzes"></section>`
+    document.querySelector('.home').innerHTML =
+    `${myQuizzes} <p class="all-quizzes-title">Todos os Quizzes</p> <section class="all-quizzes"></section> `
 }
