@@ -1,4 +1,3 @@
-let actual = '.home';
 let object;
 let points = 0;
 let pointsPerQuestion = 0;
@@ -8,8 +7,7 @@ function callQuizz(id) {
     let promise = axios.get(`${URL_API}quizzes/${id}`)
     .then(renderQuizzing)
     .catch();
-    document.querySelector(actual).style.display = 'none';
-    actual = '.quizzing';
+    document.querySelector('.home').style.display = 'none';
 }
 
 function renderQuizzing(response) {
