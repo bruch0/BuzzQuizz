@@ -1,15 +1,15 @@
-let actual = '.home';
 let object;
 let points = 0;
 let pointsPerQuestion = 0;
+let idQuizz;
 
 function callQuizz(id) {
+    idQuizz = id
     callLoading();
     let promise = axios.get(`${URL_API}quizzes/${id}`)
     .then(renderQuizzing)
     .catch();
-    document.querySelector(actual).style.display = 'none';
-    actual = '.quizzing';
+    document.querySelector('.home').style.display = 'none';
 }
 
 function renderQuizzing(response) {
@@ -41,15 +41,21 @@ function renderQuizzing(response) {
             </div>
         </div>`
     }
-    document.querySelector('section.quizzing').innerHTML += `<div class="score">
-                                                                <div class="container">
-                                                                    <p class="title"></p>
-                                                                    <div class="description">
-                                                                        <img>
-                                                                        <p></>
-                                                                    </div>
-                                                                </div>
-                                                            </div>`
+    document.querySelector('section.quizzing').innerHTML += 
+    `<div class="score">
+        <div class="container">
+            <p class="title"></p>
+            <div class="description">
+                <img>
+                <p></>
+            </div>
+        </div>
+    </div>
+    <div class="options-endgame">
+        <button class="play-again" onclick="resetValues(true)">Reiniciar Quizz</button>
+        <button class="home" onclick="home()">Voltar para home</button>
+    </div>`
+
     renderQuestions(response);
     pointsPerQuestion = parseInt(100 / response.data.questions.length);
 }
@@ -138,7 +144,28 @@ function showScore() {
     document.querySelector('.score .title').innerHTML = 
     `${points}% de acerto: ${object.levels[level].title}`;
     document.querySelector('.score img').src = object.levels[level].image;
-    document.querySelector('.description p').innerHTML = object.levels[0].text;
+    document.querySelector('.description p').innerHTML = object.levels[level].text;
 
-    document.querySelector('.score').style.display = 'block'
+    document.querySelector('.score').style.display = 'block';
+    document.querySelector('.options-endgame').style.display = 'flex';
+}
+
+function resetValues(playAgain) {
+    points = 0;
+    let removeQuestions = document.querySelector('.quizzing').children;
+    let length = removeQuestions.length;
+    
+    for (let i = 1; i < length; i++) {
+        removeQuestions[1].remove();
+    }
+    if (playAgain === true) {
+        callQuizz(idQuizz);
+    }
+}
+
+function home() {
+    resetValues(false);
+
+    document.querySelector('.quizzing').style.display = 'none';
+    document.querySelector('.home').style.display = 'block';
 }

@@ -8,21 +8,27 @@ function getQuizzes () {
 }
 
 function renderQuizzes(response) {
+    startStorage(response);
     let quizzes = '';
-    for (let i = 0; i < response.data.length; i++) {
-        quizzes +=`<div class="quizz">
-                        <button onclick="callQuizz(${i + 1})" id="quizz-${i + 1}"></button>
-                        <p class="title">${response.data[response.data.length - 1 - i].title}</p>
+    let checkerNumber = 0;
+    for (let i = 1; i < response.data.length + 1; i++) {
+        let checker = i === ignoreOnLoadingAllQuizzes[checkerNumber];
+        if (!checker) {
+            quizzes +=`<div class="quizz">
+                        <button onclick="callQuizz(${i})" id="quizz-${i}"></button>
+                        <p class="title">${response.data[response.data.length - i].title}</p>
                     </div>
                     `
+        }
+        else {
+            checkerNumber ++;
+        }
     }
-
     document.querySelector('.all-quizzes').innerHTML = quizzes;
 
-    for (let i = 0; i < response.data.length; i++) {
-        document.querySelector(`#quizz-${i + 1}`).style.background = 
-        `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${response.data[response.data.length - 1 - i].image})`;
-        
+    for (let i = 1; i < response.data.length + 1; i++) {
+        document.querySelector(`#quizz-${i}`).style.background = 
+        `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${response.data[response.data.length - i].image})`;
     }
     hideLoading();
 }
