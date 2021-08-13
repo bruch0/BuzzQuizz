@@ -63,6 +63,7 @@ function renderQuizzing(response) {
 function renderQuestions (response) {
     for (let i = 0; i < response.data.questions.length; i++) {
         document.querySelector('.question .title.unset').innerHTML = response.data.questions[i].title;
+        document.querySelector('.question .title.unset').style.backgroundColor = response.data.questions[i].color;
         document.querySelector('.question .title.unset').classList.remove('unset');
         for (let j = 0; j < response.data.questions[i].answers.length ; j++) {
             document.querySelector('.question .options p.unset').innerHTML = response.data.questions[i].answers[j].text;
