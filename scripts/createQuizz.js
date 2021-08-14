@@ -275,8 +275,6 @@ function loadCreatePage3(){
     }
 }
 
-
-
 function finishPage3(){
     let levels = document.querySelectorAll(".newLevel");
     let localLevel = {};
@@ -292,13 +290,19 @@ function finishPage3(){
     }
 
     if(isValidPage3()){
-        alert("tudo certo");
         createQuizzObj();
         console.log(createQuizzObj());
+        loadCreatePage4();
     }else{
         quizzLevels = [];
         return;
     }
+}
+
+function loadCreatePage4(){
+    document.querySelector(".create-3").style.display = "none";
+    document.querySelector(".create-4").style.display = "flex";
+    
 }
 
 function createQuizzObj(){
