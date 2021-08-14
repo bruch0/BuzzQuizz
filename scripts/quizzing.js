@@ -60,7 +60,22 @@ function renderQuizzing(response) {
     pointsPerQuestion = 100 / response.data.questions.length;
 }
 
+function shuffleAnswers(array) {
+  let currentIndex = array.length,  randomIndex;
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
 function renderQuestions (response) {
+    response.data.questions.forEach(element => {
+        shuffleAnswers(element.answers)
+    });
+    
     for (let i = 0; i < response.data.questions.length; i++) {
         document.querySelector('.question .title.unset').innerHTML = response.data.questions[i].title;
         document.querySelector('.question .title.unset').style.backgroundColor = response.data.questions[i].color;
