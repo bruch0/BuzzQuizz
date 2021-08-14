@@ -290,18 +290,19 @@ function finishPage3(){
     }
 
     if(isValidPage3()){
-        createQuizzObj();
-        console.log(createQuizzObj());
-        loadCreatePage4();
+        let quizz = createQuizzObj();
+        idQuizz = sendToAPI(quizz);
+        loadCreatePage4(idQuizz);
     }else{
         quizzLevels = [];
         return;
     }
 }
 
-function loadCreatePage4(){
+function loadCreatePage4(idQuizz){
     document.querySelector(".create-3").style.display = "none";
     document.querySelector(".create-4").style.display = "flex";
+    document.querySelector('.create-4 .nextButton').setAttribute('onclick', `callQuizz(${idQuizz})`)
     
 }
 
@@ -332,3 +333,27 @@ function animateCard(elem, type){
 
 }
 
+function sendToAPI(obj) {
+    callLoading();
+    let promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes', obj)
+    .then(function(response) {
+        let local = JSON.parse(localStorage.getItem('userQuizzes'))
+        local.push({id: response.data.id, key: response.data.key});
+        let storage = JSON.stringify(local);
+        localStorage.setItem('userQuizzes', storage);
+        hideLoading();
+        addIds();
+        return response.data.id
+        })
+}
+
+function addIds() {
+    let ids = [];
+    let local = JSON.parse(localStorage.getItem('userQuizzes'))
+    local.forEach(function(element) {
+        ids.push(element.id)
+    })
+
+    let storage = JSON.stringify(ids);
+    localStorage.setItem('ids', storage);
+}

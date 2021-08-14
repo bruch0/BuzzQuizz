@@ -9,14 +9,19 @@ function getQuizzes () {
 
 function renderQuizzes(response) {
     startStorage(response);
-    console.log(response)
     let quizzes = '';
+    let idsCopy = JSON.parse(localStorage.getItem('ids'));
     
     response.data.forEach(element => {
-        quizzes +=`<div class="quizz">
-                    <button onclick="callQuizz(${element.id})" id="quizz-${element.id}"></button>
-                    <p class="title">${element.title}</p>
-                </div>`
+        if (idsCopy[0] !== element.id) {
+            quizzes +=`<div class="quizz">
+                                <button onclick="callQuizz(${element.id})" id="quizz-${element.id}"></button>
+                                <p class="title">${element.title}</p>
+                            </div>`
+        }
+        else {
+            idsCopy.shift();
+        }
     });
 
     document.querySelector('.all-quizzes').innerHTML = quizzes;
