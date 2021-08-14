@@ -10,6 +10,7 @@ function callQuizz(id) {
     .then(renderQuizzing)
     .catch();
     document.querySelector('.home').style.display = 'none';
+    document.querySelector('.create-4').style.display = 'none';
 }
 
 function renderQuizzing(response) {

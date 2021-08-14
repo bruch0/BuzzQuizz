@@ -291,7 +291,7 @@ function finishPage3(){
 
     if(isValidPage3()){
         let quizz = createQuizzObj();
-        idQuizz = sendToAPI(quizz);
+        let idQuizz = sendToAPI(quizz);
         loadCreatePage4(idQuizz);
     }else{
         quizzLevels = [];
@@ -337,13 +337,15 @@ function sendToAPI(obj) {
     callLoading();
     let promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes', obj)
     .then(function(response) {
+        let id;
         let local = JSON.parse(localStorage.getItem('userQuizzes'))
         local.push({id: response.data.id, key: response.data.key});
         let storage = JSON.stringify(local);
         localStorage.setItem('userQuizzes', storage);
         hideLoading();
         addIds();
-        return response.data.id
+        id = response.data.id;
+        return id;
         })
 }
 

@@ -6,6 +6,7 @@ function startStorage(response) {
         let createdQuizzes = [];
         let storage = JSON.stringify(createdQuizzes);
         localStorage.setItem('ids', storage);
+        localStorage.setItem('userQuizzes', storage);
     }
     checkCreatedQuizzes(response);
 }
@@ -97,6 +98,7 @@ function closeDeleteQuizz() {
 }
 
 function deleteQuizz(idQuizz) {
+    callLoading();
     let key;
     let deleteKey = JSON.parse(localStorage.getItem('userQuizzes'));
     console.log(deleteKey)
@@ -116,6 +118,7 @@ function deleteQuizz(idQuizz) {
 
     deleteFromStorage(idQuizz);
     deleteFromStoragedIds(idQuizz);
+    window.location.reload();
 }
 
 function deleteFromStorage(id) {
