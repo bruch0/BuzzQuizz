@@ -1,3 +1,5 @@
+
+.create-4,
 .create-3,
 .create-2,
 .create-1{
@@ -45,6 +47,7 @@ input::placeholder {
     font-size: 21px;
     border: 1px #EC362D solid;
     cursor: pointer;
+    font-family: 'Roboto', sans-serif;
 }
 
 .newLevels,
@@ -106,6 +109,19 @@ input::placeholder {
 
 .input-separation{
     margin-bottom: 32px;
+}
+
+.homeButton{
+    background-color: inherit;
+    border: none;
+    width: 219.64px;
+    height: 44px;
+    margin-top: 9px;
+    font-size: 21px;
+    font-weight: 400;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    color:#818181;
 }
 
 @media (max-width: 1100px) {
