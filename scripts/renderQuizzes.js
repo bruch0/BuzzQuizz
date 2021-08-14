@@ -11,31 +11,22 @@ function renderQuizzes(response) {
     startStorage(response);
     console.log(response)
     let quizzes = '';
-    let checkerNumber = 0;
-    for (let i = response.data.length - 1; i > 1 ; i--) {
-        let checker = response.data.length - i === ignoreOnLoadingAllQuizzes[checkerNumber];
-        if (!checker) {
-            quizzes +=`<div class="quizz">
-                        <button onclick="callQuizz(${response.data[i].id})" id="quizz-${response.data[i].id}"></button>
-                        <p class="title">${response.data[i].title}</p>
-                    </div>
-                    `
-        }
-        else {
-            checkerNumber ++;
-        }
-    }
+    
+    response.data.forEach(element => {
+        quizzes +=`<div class="quizz">
+                    <button onclick="callQuizz(${element.id})" id="quizz-${element.id}"></button>
+                    <p class="title">${element.title}</p>
+                </div>`
+    });
+
     document.querySelector('.all-quizzes').innerHTML = quizzes;
 
-    for (let i = response.data.length; i > 0 ; i--) {
-        let insertImage = document.querySelector(`#quizz-${i}`);
-        let check = insertImage === null;
-        if (!check) {
-            insertImage.style.background = 
-            `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${response.data[response.data.length - i].image})`;
-        }
-        
-    }
+    response.data.forEach(element => {
+       let insertImage = document.querySelector(`#quizz-${element.id}`);
+        insertImage.style.background = 
+            `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${element.image})`;
+    });
+
     hideLoading();
 }
 

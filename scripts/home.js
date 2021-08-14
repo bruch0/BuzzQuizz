@@ -1,4 +1,4 @@
-ignoreOnLoadingAllQuizzes = [];
+let ignoreOnLoadingAllQuizzes;
 
 function startStorage(response) {
     let test = localStorage.getItem("ids");
@@ -25,12 +25,16 @@ function checkCreatedQuizzes(response) {
 
 function returnCreatedQuizzes(ids, response) {
     let createdQuizzes = [];
-    for (let i = 0; i < ids.length; i++) {
-        createdQuizzes.push(
-            {'title': response.data[Math.abs(response.data.length - ids[i])].title,
-            'image':  response.data[Math.abs(response.data.length - ids[i])].image
-        })
-    }
+    ids.forEach(element => {
+        response.data.forEach(quizz => {
+            if(element === quizz.id) {
+                createdQuizzes.push(
+                {'title': quizz.title,
+                'image':  quizz.image})
+            }
+        });
+    });
+
     return createdQuizzes;
 }
 
