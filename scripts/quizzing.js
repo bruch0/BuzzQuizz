@@ -183,8 +183,5 @@ function resetValues(playAgain) {
 }
 
 function home() {
-    resetValues(false);
-
-    document.querySelector('.quizzing').style.display = 'none';
-    document.querySelector('.home').style.display = 'block';
+    window.location.reload();
 }

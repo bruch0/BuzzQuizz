@@ -137,20 +137,20 @@ function loadCreatePage1(){
     document.querySelector(".create-1").style.display = "flex";
 }
 
-function finishPage1(){
+function finishPage1(editMode, idQuizz){
     quizzTitle = document.getElementById("newQuizzTitle").value;
     quizzImg = document.getElementById("newQuizzImg").value;
     nQuestions = document.getElementById("numberQuestions").value;
     nLevels = document.getElementById("numberLevels").value;
 
     if (isValidPage1()){
-        loadCreatePage2();
+        loadCreatePage2(editMode, idQuizz);
     }else{
         return;
     }
 }
 
-function loadCreatePage2(){
+function loadCreatePage2(editMode, idQuizz) {
     document.querySelector(".create-1").style.display = "none";
     document.querySelector(".create-2").style.display = "flex";
     let ul = document.querySelector(".newQuestions");
@@ -160,7 +160,7 @@ function loadCreatePage2(){
         <li class="newQuestion close">
             <span onclick="animateCard(this, '.newQuestion-content')">Pergunta ${i+1}</span>
             <ion-icon name="create-outline" onclick="animateCard(this, '.newQuestion-content')"></ion-icon>
-            <div class="newQuestion-content">
+            <div class="newQuestion-content unset">
                 <input type="text" class="newQuestionText" placeholder="Texto da pergunta">
                 <input type="text" class="newQuestionColor" placeholder="Cor de fundo da pergunta">
                 <span>Resposta correta</span>
@@ -177,9 +177,13 @@ function loadCreatePage2(){
         </li>
         `
     }
+    if (editMode === true) {
+        let promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes/${idQuizz}`)
+    .then(insertInfoPage2);
+    }
 }
 
-function finishPage2(){
+function finishPage2(editMode, idQuizz){
     let questions = document.querySelectorAll(".newQuestion");
     let localQuestion = {};
     let localAnswers = [];
@@ -245,7 +249,7 @@ function finishPage2(){
     }
   
    if(isValidPage2()){
-       loadCreatePage3();
+       loadCreatePage3(editMode, idQuizz);
    }else{
        //if the page is not valid, then
        //reset questions
@@ -254,7 +258,7 @@ function finishPage2(){
    }
 }
 
-function loadCreatePage3(){
+function loadCreatePage3(editMode, idQuizz){
     document.querySelector(".create-2").style.display = "none";
     document.querySelector(".create-3").style.display = "flex";
     let ul = document.querySelector(".newLevels");
@@ -264,7 +268,7 @@ function loadCreatePage3(){
         <li class="newLevel close">
             <span onclick="animateCard(this, '.newLevel-content')">Nível ${i+1}</span>
             <ion-icon name="create-outline" onclick="animateCard(this, '.newLevel-content')"></ion-icon>
-            <div class="newLevel-content">
+            <div class="newLevel-content unset">
                 <input type="text" class="newLevelTitle" placeholder="Título do nível">
                 <input type="text" class="newLevelPercent" placeholder="% de acerto mínima">
                 <input type="text" class="newLevelImg" placeholder="URL da imagem do nível">
@@ -273,9 +277,14 @@ function loadCreatePage3(){
         </li>
         `
     }
+
+    if (editMode === true) {
+        let promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes/${idQuizz}`)
+    .then(insertInfoPage3);
+    }
 }
 
-function finishPage3(){
+function finishPage3(editMode){
     let levels = document.querySelectorAll(".newLevel");
     let localLevel = {};
 
@@ -291,8 +300,12 @@ function finishPage3(){
 
     if(isValidPage3()){
         let quizz = createQuizzObj();
-        let idQuizz = sendToAPI(quizz);
-        loadCreatePage4(idQuizz);
+        if (editMode === true) {
+            sendEditionToAPI(quizz)
+        }
+        else {
+            sendToAPI(quizz);
+        }
     }else{
         quizzLevels = [];
         return;
@@ -345,7 +358,7 @@ function sendToAPI(obj) {
         hideLoading();
         addIds();
         id = response.data.id;
-        return id;
+        loadCreatePage4(id);
         })
 }
 
@@ -358,4 +371,32 @@ function addIds() {
 
     let storage = JSON.stringify(ids);
     localStorage.setItem('ids', storage);
+}
+
+function sendEditionToAPI(obj) {
+    callLoading();
+    let promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes', obj)
+    .then(function(response) {
+        let id;
+        let key;
+        let deleteKey = JSON.parse(localStorage.getItem('userQuizzes'));
+        console.log(deleteKey)
+        deleteKey.forEach(element => {
+            console.log(element.key)
+            if (element.id === idQuizz) {
+                key = element.key
+            }
+        });
+
+        let URL = `https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes/${idQuizz}`
+        console.log(URL)
+
+        let promise = axios.put(URL, {
+        headers: {'Secret-Key': key}
+        })
+        id = response.data.id;
+        loadCreatePage4(id);
+
+        hideLoading();
+        })
 }

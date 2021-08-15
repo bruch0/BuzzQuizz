@@ -45,7 +45,7 @@ function loadHome(checkUserCreatedQuizzes, createdQuizzes) {
     `<div class="confirm-section">
         <div>
             Deseja realmente <br/>deletar esse quizz?
-            <button class="button-1" onclick="">Deletar</button>
+            <button class="button-1" onclick="deleteQuizz()">Deletar</button>
             <button class="button-2" onclick="closeDeleteQuizz()">Cancelar</button>
         </div>
     </div>`;
@@ -66,7 +66,7 @@ function loadHome(checkUserCreatedQuizzes, createdQuizzes) {
                 <button id="quizz-${ignoreOnLoadingAllQuizzes[i]}" onclick="callQuizz(${ignoreOnLoadingAllQuizzes[i]})"></button>
                 <p class="title">${createdQuizzes[i].title}</p>
                 <div class="options-holder">
-                    <button><img class="icon" src="assets/edit_logo.png" alt="Editar quizz"></button>
+                    <button onclick="editQuizz(${ignoreOnLoadingAllQuizzes[i]})"><img class="icon" src="assets/edit_logo.png" alt="Editar quizz"></button>
                     <button onclick="openDeleteQuizz(${ignoreOnLoadingAllQuizzes[i]})"><img class="icon" src="assets/delete_logo.png" alt="Deletar quizz"></button>
                 </div>
             </div>`
