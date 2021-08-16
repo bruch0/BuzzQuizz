@@ -385,16 +385,13 @@ function sendEditionToAPI(obj) {
         let id;
         let key;
         let deleteKey = JSON.parse(localStorage.getItem('userQuizzes'));
-        console.log(deleteKey)
         deleteKey.forEach(element => {
-            console.log(element.key)
             if (element.id === idQuizz) {
                 key = element.key
             }
         });
 
         let URL = `https://mock-api.bootcamp.respondeai.com.br/api/v3/buzzquizz/quizzes/${idQuizz}`
-        console.log(URL)
 
         let promise = axios.put(URL, {
         headers: {'Secret-Key': key}
