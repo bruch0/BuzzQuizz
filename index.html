@@ -41,17 +41,22 @@
         <section class="create-1">
             <span class="title-create">Comece pelo começo</span>
             <ul class="initial-form">
+                <p class="alert-all hidden">Preencha todos os campos</p>
                 <li>
                     <input type="text" id="newQuizzTitle" placeholder="Título do seu quizz">
+                    <p class="alert-title hidden">O título deve conter entre 20 e 65 caracteres</p>
                 </li>
                 <li>
                     <input type="text" id="newQuizzImg" placeholder="URL da imagem do seu quizz">
+                    <p class="alert-url hidden">O valor informado não é uma URL válida</p>
                 </li>
                 <li>
                     <input type="text" id="numberQuestions" placeholder="Quantidade de perguntas do quizz">
+                    <p class="alert-nQuestions hidden">A quantidade de questões e a quantidade de níveis devem ser números</p>
                 </li>
                 <li>
                     <input type="text" id="numberLevels" placeholder="Quantidade de níveis do quizz">
+                    <p class="alert-nLevels hidden">A quantidade de questões e a quantidade de níveis devem ser números</p>
                 </li>
             </ul>
             <button class="nextButton" onclick="finishPage1()">Prosseguir pra criar perguntas</button>
@@ -60,6 +65,7 @@
         <!-- CREATE QUIZZ PAGE 2-->
         <section class="create-2">
             <span class="title-create">Crie suas perguntas</span>
+                <p class="alert-all hidden page-2">Preencha todos os campos</p>
             <ul class="newQuestions">
                 
             </ul>

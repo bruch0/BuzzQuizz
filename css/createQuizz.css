@@ -1,4 +1,3 @@
-
 .create-4,
 .create-3,
 .create-2,
@@ -6,6 +5,22 @@
     display: none;
     flex-direction: column;
     align-items: center;
+}
+
+ul li {
+    margin-bottom: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.alert-title, .alert-url, .alert-nQuestions, .alert-nLevels, .alert-all, .alert-text, .alert-color, .alert-answer {
+    opacity: 0;
+    color: #EC362D;
+    font-size: 16px;
+    margin: 5px;
+    transition: .5s;
 }
 
 .title-create{

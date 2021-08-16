@@ -9,69 +9,163 @@ let nQuestions, nLevels = 0;
 function isValidPage1(){
     //validade inputs page1
     if (quizzImg==="" || quizzTitle==="" || nQuestions==="" || nLevels===""){
-        alert("Preencha os campos corretamente");
+        document.querySelector('.alert-all').classList.remove('hidden');
+        document.querySelector('.alert-all').style.opacity = 1;
         return false;
     }else{
+        document.querySelector('.alert-all').classList.add('hidden');
+        document.querySelector('.alert-all').style.opacity = 0;
+
         nQuestions = Number(nQuestions);
         nLevels = Number(nLevels);
-        if(isNaN(nQuestions) || isNaN(nLevels)){
-            alert("A quantidade de questões e a quantidade de níveis devem ser números");
-            return false;
-        }
+        
         if(quizzTitle.length < 20 || quizzTitle.length > 65){
-            alert("O título deve conter entre 20 e 65 caracteres");
-            return false;
+            document.querySelector('.alert-title').classList.remove('hidden');
+            document.querySelector('.alert-title').style.opacity = 1;
+            document.querySelector('#newQuizzTitle').style.background = '#FFE9E9';
         }
+        else {
+            document.querySelector('.alert-title').classList.add('hidden');
+            document.querySelector('.alert-title').style.opacity = 0;
+            document.querySelector('#newQuizzTitle').style.background = 'transparent';
+        }
+        
         if(!isValidUrl(quizzImg)){
-            alert("Link da imagem inválido");
-            return false;
+            document.querySelector('.alert-url').classList.remove('hidden');
+            document.querySelector('.alert-url').style.opacity = 1;
+            document.querySelector('#newQuizzImg').style.background = '#FFE9E9';
         }
-        if(nQuestions < 3){
-            alert("O quizz deve conter pelo menos 3 questões");
-            return false;
-        }
-        if(nLevels < 2){
-            alert("O quizz deve conter pelo menos 2 níveis");
-            return false;
+        else {
+            document.querySelector('.alert-url').classList.add('hidden');
+            document.querySelector('.alert-url').style.opacity = 0;
+            document.querySelector('#newQuizzImg').style.background = 'transparent';
         }
 
-        return true;
+        if(isNaN(nQuestions) || isNaN(nLevels)){
+            document.querySelector('.alert-nLevels').classList.remove('hidden');
+            document.querySelector('.alert-nLevels').style.opacity = 1;
+            document.querySelector('.alert-nLevels').innerHTML = 'Insira um número válido';
+            document.querySelector('#numberLevels').style.background = '#FFE9E9';
+            
+            document.querySelector('.alert-nQuestions').classList.remove('hidden');
+            document.querySelector('.alert-nQuestions').style.opacity = 1;
+            document.querySelector('.alert-nQuestions').innerHTML = 'Insira um número válido';
+            document.querySelector('#numberQuestions').style.background = '#FFE9E9';
+
+            return false
+        }
+        else {
+            document.querySelector('.alert-nLevels').classList.add('hidden');
+            document.querySelector('.alert-nLevels').style.opacity = 0;
+            document.querySelector('#numberLevels').style.background = 'transparent';
+            
+            document.querySelector('.alert-nQuestions').classList.add('hidden');
+            document.querySelector('.alert-nQuestions').style.opacity = 0;
+            document.querySelector('#numberQuestions').style.background = 'transparent';
+        }
+
+        if(nQuestions < 3){
+            document.querySelector('.alert-nQuestions').classList.remove('hidden');
+            document.querySelector('.alert-nQuestions').style.opacity = 1;
+            document.querySelector('.alert-nQuestions').innerHTML = 'O quizz deve conter pelo menos 3 questões';
+            document.querySelector('#numberQuestions').style.background = '#FFE9E9';
+        }
+        else {
+            document.querySelector('.alert-nQuestions').classList.add('hidden');
+            document.querySelector('.alert-nQuestions').style.opacity = 0;
+            document.querySelector('#numberQuestions').style.background = 'transparent';
+        }
+
+        if(nLevels < 2){
+            document.querySelector('.alert-nLevels').classList.remove('hidden');
+            document.querySelector('.alert-nLevels').style.opacity = 1;
+            document.querySelector('.alert-nLevels').innerHTML = 'O quizz deve conter pelo menos 2 níveis';
+            document.querySelector('#numberLevels').style.background = '#FFE9E9';
+        }
+        else {
+            document.querySelector('.alert-nLevels').classList.add('hidden');
+            document.querySelector('.alert-nLevels').style.opacity = 0;
+            document.querySelector('#numberLevels').style.background = 'transparent';
+        }
+
+        let hiddenTotal = 6 + nQuestions * 2 + nQuestions * 6
+        if (document.querySelectorAll('.hidden').length !== hiddenTotal) {
+            return true
+        }
+        else {
+            return false
+        }
     }
 }
 
 function isValidPage2(){
     for(let i=0; i<nQuestions; i++){
         if(quizzQuestions[i].title === "" || quizzQuestions[i].color === ""){
-            alert("Preencha todos os campos");
+            document.querySelector('.alert-all.page-2').classList.remove('hidden')
+            document.querySelector('.alert-all.page-2').style.opacity = 1;
             return false;
         }else{
+            document.querySelector('.alert-all.page-2').classList.add('hidden')
+            document.querySelector('.alert-all.page-2').style.opacity = 0;
+
             if(quizzQuestions[i].title.length < 20){
-                alert("O título deve conter ao menos 20 caracteres");
-                return false;
+                let x = document.querySelectorAll('.alert-text');
+                x[i].style.opacity = 1;
+                x[i].classList.remove('hidden');
             }
-            if(!isHexColor(quizzQuestions[i].color)){
-                alert("A cor deve ser hexadecimal válida");
-                return false;
+            else {
+                let x = document.querySelectorAll('alert-text');
+                x[i].style.opacity = 0;
+                x[i].classList.add('hidden');
             }
 
+            if(!isHexColor(quizzQuestions[i].color)){
+                document.querySelector('.alert-color.page-2').classList.remove('hidden');
+                document.querySelector('.alert-color.page-2').style.opacity = 1;
+            }
+            else {
+                document.querySelector('.alert-color.page-2').classList.add('hidden')
+                document.querySelector('.alert-color.page-2').style.opacity = 0;
+            }
+
+            let x = document.querySelectorAll('.alert-answer');
+            let y = document.querySelectorAll('.alert-url.page-2');
             for(let j=0; j<quizzQuestions[i].answers.length; j++){
                 if(quizzQuestions[i].answers[j].text === "" || quizzQuestions[i].answers[j].image === ""){
-                    alert("Preencha os campos corretamente");
-                    return false;
+                    x[i].classList.remove('hidden');
+                    x[i].style.opacity = 1;
                 }else{
+                    x[i].classList.add('hidden');
+                    x[i].style.opacity = 0;
+                    
                     if(!isValidUrl(quizzQuestions[i].answers[j].image)){
-                        alert("As imagens devem conter link de URL válido");
-                        return false;
+                        y[i].classList.remove('hidden');
+                        y[i].style.opacity = 1;
+                    }
+                    else {
+                        y[i].classList.add('hidden');
+                        y[i].style.opacity = 0;
                     }
                     if(quizzQuestions[i].answers.length < 2){
-                        alert("Uma pergunta deve conter dentre 2 e 4 respostas");
-                        return false;
+                        document.querySelector('.alert-all.page-2').classList.remove('hidden');
+                        document.querySelector('.alert-all.page-2').style.opacity = 1;
+                        document.querySelector('.alert-all.page-2').innerHTML = 'Uma pergunta deve conter entre 2 e 4 respostas'
+                    }
+                    else {
+                        document.querySelector('.alert-all.page-2').classList.add('hidden');
+                        document.querySelector('.alert-all.page-2').style.opacity = 0;
                     }
                 }
             }
         }
     }
-    return true;
+    let hiddenTotal = 6 + nQuestions * 2 + nQuestions * 6
+        if (document.querySelectorAll('.hidden').length === hiddenTotal) {
+            return true
+        }
+        else {
+            return false
+        }
 }
 
 function isValidPage3(){
@@ -162,17 +256,36 @@ function loadCreatePage2(editMode, idQuizz) {
             <ion-icon name="create-outline" onclick="animateCard(this, '.newQuestion-content')"></ion-icon>
             <div class="newQuestion-content unset">
                 <input type="text" class="newQuestionText" placeholder="Texto da pergunta">
+                <p class="alert-text hidden page-2 ">O título deve conter ao menos 20 caracteres</p>
+
                 <input type="text" class="newQuestionColor" placeholder="Cor de fundo da pergunta">
+                <p class="alert-color hidden page-2">A cor deve ser hexadecimal válida</p>
+
                 <span>Resposta correta</span>
                 <input type="text" class="correctAnswer" placeholder="Resposta correta">
+                <p class="alert-answer hidden page-2">Preencha os campos corretamente</p>
+
                 <input type="text" class="correctAnswerImg" placeholder="URL da imagem">
+                <p class="alert-url hidden page-2">As imagens devem conter link de URL válido</p>
+
                 <span>Respostas incorretas</span>
                 <input type="text" class="wrongAnswer1" placeholder="Resposta incorreta 1">
+                <p class="alert-answer hidden page-2">Preencha os campos corretamente</p>
+
                 <input type="text" class="wrongAnswerImg1 input-separation" placeholder="URL da imagem 1">
+                <p class="alert-url hidden page-2">As imagens devem conter link de URL válido</p>
+
                 <input type="text" class="wrongAnswer2" placeholder="Resposta incorreta 2">
+                <p class="alert-answer hidden page-2">Preencha os campos corretamente</p>
+
                 <input type="text" class="wrongAnswerImg2 input-separation" placeholder="URL da imagem 2">
+                <p class="alert-url hidden page-2">As imagens devem conter link de URL válido</p>
+
                 <input type="text" class="wrongAnswer3" placeholder="Resposta incorreta 3">
+                <p class="alert-answer hidden page-2">Preencha os campos corretamente</p>
+
                 <input type="text" class="wrongAnswerImg3"  placeholder="URL da imagem 3">
+                <p class="alert-url hidden page-2">As imagens devem conter link de URL válido</p>
             </div>
         </li>
         `
