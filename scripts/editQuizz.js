@@ -36,7 +36,6 @@ function insertInfoPage2(response) {
 }
 
 function insertInfoPage3(response) {
-    console.log(response.data.levels)
     response.data.levels.forEach(function (element) {
         document.querySelector('.newLevel-content.unset .newLevelTitle').value = element.title;
         document.querySelector('.newLevel-content.unset .newLevelPercent').value = element.minValue;
