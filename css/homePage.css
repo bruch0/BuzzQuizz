@@ -28,7 +28,7 @@ body {
 }
 
 header {
-    width: 100%;
+    width: 100vw;
     height: 69px;
     background-color: #EC362D;
     box-shadow: 0px 4px 4px 0px #00000040;
@@ -42,11 +42,13 @@ header {
     top: 0;
     left: 0;
     z-index: 2;
+    overflow-x: hidden;
 }
 
 main {
     width: 75%;
     margin: 146px auto;
+    overflow-x: hidden;
 }
 
 main > section {

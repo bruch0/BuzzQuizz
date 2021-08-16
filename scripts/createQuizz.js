@@ -99,6 +99,7 @@ function isValidPage1(){
 }
 
 function isValidPage2(){
+    
     for(let i=0; i<nQuestions; i++){
         if(quizzQuestions[i].title === "" || quizzQuestions[i].color === ""){
             document.querySelector('.alert-all.page-2').classList.remove('hidden')
@@ -110,11 +111,12 @@ function isValidPage2(){
 
             if(quizzQuestions[i].title.length < 20){
                 let x = document.querySelectorAll('.alert-text');
+                console.log(x)
                 x[i].style.opacity = 1;
                 x[i].classList.remove('hidden');
             }
             else {
-                let x = document.querySelectorAll('alert-text');
+                let x = document.querySelectorAll('.alert-text');
                 x[i].style.opacity = 0;
                 x[i].classList.add('hidden');
             }
